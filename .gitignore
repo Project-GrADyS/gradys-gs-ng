@@ -2,6 +2,8 @@
 venv/
 dump.rdb
 .env
+.venv3.8
+.python-version
 connections/LOGS/*.log
 !connections/LOGS/.gitkeep
 uav_simulator/LOGS_sim/*.log

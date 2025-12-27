@@ -23,14 +23,11 @@
         </div>
         <div class="buttons-set-container">
           <p>Get Location</p>
-          <input class="button" id="position-absolute" type="button" value="Position Absolute">
-          <input class="button" id="position-relative" type="button" value="Position Relative">
+          <input class="button" id="position-gps" type="button" value="GPS Position">
+          <input class="button" id="position-ned" type="button" value="NED Position">
         </div>
         <div class="buttons-set-container">
           <p>Experiment Commands</p>
-          <input class="button" id="auto" type="button" value="Start Auto">
-          <input class="button" id="spiral" type="button" value="Spiral Experiment">
-          <input class="button" id="experiment" type="button" value="Experiment">
           <div>
             <div class="checkbox-container">
               <input type="checkbox" name="abort-all-checkbox" id="abort-all" onclick="checkAbort(this)" class="custom-checkbox"/>
@@ -40,7 +37,9 @@
         </div>
         <div class="buttons-set-container">
           <p>Flight Commands</p>
-          <input class="button" id="takeoff-and-hold" type="button" value="Takeoff and Hold">
+          <input class="button" id="arm" type="button" value="Arm">
+          <input class="button" id="takeoff" type="button" value="Takeoff">
+          <input class="button" id="abort" type="button" value="Abort">
         </div>
           <form method="post" action="" enctype="multipart/form-data" id="form">
             <div class="buttons-set-container">

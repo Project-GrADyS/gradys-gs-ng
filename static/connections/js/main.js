@@ -241,38 +241,27 @@ updateSocket.onclose = function(e) {
 // Onclick functions
 //-------------------
 // Table of commands:
-// 20: /path_position_absolute
-// 22: /path_position_relative
-// 24: /auto
-// 26: /spiral
-// 28: /experiment
-// 30: /set_rtl
-// 32: /takeoff_and_hold
-document.querySelector('#position-absolute').onclick = function(e) {
+// 20: /telemetry/gps
+// 22: /telemetry/ned
+// 30: /command/rtl
+// 32: /command/takeoff
+document.querySelector('#position-gps').onclick = function(e) {
   sendCommand(20);
 };
 
-document.querySelector('#position-relative').onclick = function(e) {
+document.querySelector('#position-ned').onclick = function(e) {
   sendCommand(22);
 };
 
-document.querySelector('#auto').onclick = function(e) {
+ document.querySelector('#abort').onclick = function(e) {
+   sendCommand(30);
+};
+
+document.querySelector('#arm').onclick = function(e) {
   sendCommand(24);
-};
+}
 
-document.querySelector('#spiral').onclick = function(e) {
-  sendCommand(26);
-};
-
-document.querySelector('#experiment').onclick = function(e) {
-  sendCommand(28);
-};
-
-// document.querySelector('#abort-all').onclick = function(e) {
-//   sendCommand(30);
-// };
-
-document.querySelector('#takeoff-and-hold').onclick = function(e) {
+document.querySelector('#takeoff').onclick = function(e) {
   sendCommand(32);
 };
 
