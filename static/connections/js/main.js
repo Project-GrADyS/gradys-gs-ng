@@ -27,7 +27,7 @@ receivePostSocket.addEventListener('open', function (event) {
 });
 
 
-function sendCommand(cmdNumber, buttonType="default") {
+function sendCommand(cmdNumber, buttonType="default", data={}) {
   // Send the selected command to a set of devices, obtained from getDeviceReceive()
   //
   // Format of command-json that will be sent:
@@ -36,8 +36,7 @@ function sendCommand(cmdNumber, buttonType="default") {
   // buttonType - (string) default or checkbox
   // receiver - (int) ID of the active device on the 'select-device list'
   //            note if the command will be sent to all devices, the ID will be 'all'
-
-  jsonToSend = {id: 1, type: cmdNumber, button_type: buttonType}
+  jsonToSend = {id: 1, type: cmdNumber, button_type: buttonType, data: data}
   jsonToSend["receiver"] = getDeviceReceiver();
 
   jsonToSend = JSON.stringify(jsonToSend);
@@ -153,7 +152,7 @@ function checkJsonType(msg) {
         var lat = parseFloat(djangoData['lat']);
         var lng = parseFloat(djangoData['lng']);
         var status = djangoData.hasOwnProperty('status') ? djangoData['status'] : 'active';
-        var deviceType = djangoData.hasOwnProperty('device') ? djangoData['device'] : 'uav';
+        var deviceType = djangoData.hasOwnProperty('device') ? djangoData['device'] : 'teste';
 
         // Add device as a new option in Select list, if not already included
         if(!verifyActiveDevices(id)){
@@ -162,16 +161,20 @@ function checkJsonType(msg) {
             pushNewCommandOption(id, deviceType);
           }
         }
-        // else {
-        //   //Retira device se está nas opções e está inativo
-        //   if(status == 'inactive') {
-        //     removeCommandOption(id);
-        //   }
-        // }
+        else {
+          //Retira device se está nas opções e está inativo
+          if(status == 'inactive') {
+            removeCommandOption(id);
+          }
+        }
 
         notifyUiWhenJsonReceived(msg.data, msgDrone);
         // Insert/Update the marker on Google Maps, with it's location
-        gmap.newMarker(id, lat, lng, status, deviceType);
+        try {
+          gmap.newMarker(id, lat, lng, status, deviceType);
+        } catch(e) {
+          console.error("Error connecting to google maps")
+        }
         break;
 
       // The default behavior to other types not included above
@@ -253,9 +256,9 @@ document.querySelector('#position-ned').onclick = function(e) {
   sendCommand(22);
 };
 
- document.querySelector('#abort').onclick = function(e) {
-   sendCommand(30);
-};
+// document.querySelector('#abort').onclick = function(e) {
+//    sendCommand(30);
+// };
 
 document.querySelector('#arm').onclick = function(e) {
   sendCommand(24);
@@ -285,7 +288,7 @@ document.querySelector('#upload').onclick = function(e) {
   }).then(response => {
     return response.json();
   }).then(data => {
-    form.action = data.ip + "upload_file";
+    form.action = data.ip + "mission/uplaoad-script";
   }).catch(() => {
     console.log("Error while getting uav ip");
   });

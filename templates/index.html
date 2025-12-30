@@ -27,19 +27,13 @@
           <input class="button" id="position-ned" type="button" value="NED Position">
         </div>
         <div class="buttons-set-container">
-          <p>Experiment Commands</p>
-          <div>
-            <div class="checkbox-container">
-              <input type="checkbox" name="abort-all-checkbox" id="abort-all" onclick="checkAbort(this)" class="custom-checkbox"/>
-              <label for="abort-all" class="label">Abort All</label>
-            </div>
-          </div>
-        </div>
-        <div class="buttons-set-container">
           <p>Flight Commands</p>
           <input class="button" id="arm" type="button" value="Arm">
           <input class="button" id="takeoff" type="button" value="Takeoff">
-          <input class="button" id="abort" type="button" value="Abort">
+          <div class="checkbox-container">
+            <input type="checkbox" name="abort-all-checkbox" id="abort-all" onclick="checkAbort(this)" class="custom-checkbox"/>
+            <label for="abort-all" class="label">Abort</label>
+          </div>
         </div>
           <form method="post" action="" enctype="multipart/form-data" id="form">
             <div class="buttons-set-container">

@@ -135,11 +135,7 @@ class PostConsumer(AsyncWebsocketConsumer):
         type_of_request = command_path_list[1]
         url = ip + endpoint
         
-        # Json_to_send will have the correct id in the 'id' field
-        json_to_send = replicate_dict_new_id(id, received_json)
-        # Insert device_type in json_to_send
-        json_to_send['device'] = device['device']
-
+        json_to_send = received_json["data"]
         if type_of_request == 'get':
           #GET request
           task = asyncio.create_task(self.send_get_specific_device(url, id, device['device']))
