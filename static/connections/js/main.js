@@ -256,10 +256,6 @@ document.querySelector('#position-ned').onclick = function(e) {
   sendCommand(22);
 };
 
-// document.querySelector('#abort').onclick = function(e) {
-//    sendCommand(30);
-// };
-
 document.querySelector('#arm').onclick = function(e) {
   sendCommand(24);
 }
