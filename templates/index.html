@@ -17,7 +17,7 @@
       <div class="section-container command-buttons">
         <div class="select-container">
           <p>Select the device</p>
-          <select id="select-device">
+          <select class="select-device" id="select-device">
             <option value="all">Send to all</option>
           </select>
         </div>
@@ -31,23 +31,37 @@
           <input class="button" id="arm" type="button" value="Arm">
           <input class="button" id="takeoff" type="button" value="Takeoff">
           <div class="checkbox-container">
-            <input type="checkbox" name="abort-all-checkbox" id="abort-all" onclick="checkAbort(this)" class="custom-checkbox"/>
-            <label for="abort-all" class="label">Abort</label>
+            <input type="checkbox" name="abort-all-checkbox" id="land" onclick="checkLand(this)" class="custom-checkbox"/>
+            <label for="land" class="label">Land</label>
+          </div>
+          <div class="checkbox-container">
+            <input type="checkbox" name="abort-all-checkbox" id="rtl" onclick="checkRtl(this)" class="custom-checkbox"/>
+            <label for="rtl" class="label">RTL</label>
           </div>
         </div>
-          <form method="post" action="" enctype="multipart/form-data" id="form">
+          <form>
             <div class="buttons-set-container">
-              <p>Manage files</p>
+              <p>Manage Scripts</p>
               <label for="upload" class="custom-upload" id="custom-input-label">
                 <span class="material-symbols-outlined" id="input-icon">
                   upload_file
                 </span>
-                Upload file
+                Upload Script
               </label>
               <input id="upload" type="file">
-              <label for="submit-file" class="custom-submit-file-disabled" id="submit-label">Submit file</label>
+              <label for="submit-file" class="custom-submit-file-disabled" id="submit-label">Submit Script</label>
               <input type="submit" id="submit-file" disabled>
+            </div>
           </form>
+        <div class="buttons-set-container">
+          <p>Execute Scripts</p>
+          <div>
+            <select class="select-script">
+              <option value="" disabled selected>Select a script</option>
+            </select>
+            <input class="button" id="refresh-file-list" type="button" value="⭮">
+          </div>
+          <input class="button" id="execute" type="button" value="Execute Script">
         </div>
         <div class="buttons-set-container">
           <p>Configuration</p>
